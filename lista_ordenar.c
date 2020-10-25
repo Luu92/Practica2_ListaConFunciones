@@ -62,6 +62,7 @@ else{
     
     //Agregamos los VALORES DISTINTOS DE LA LISTA Y ORDENAMOS.
         if(aux->dato != dato){
+            printf("\nLista Sin elementos repetidos.");
             primer_nodo = nuevo_nodo2;
             while (aux->siguiente_nodo != NULL)
             {
@@ -78,6 +79,7 @@ else{
         else{
             while (aux->siguiente_nodo != NULL)
             {
+                printf("\nLista con el dato %d repetido, pero no fue agregado.",dato);
                 if(aux->dato > aux->siguiente_nodo->dato){
                     pivote = aux->siguiente_nodo->dato;
                     aux->siguiente_nodo->dato = aux->dato;
