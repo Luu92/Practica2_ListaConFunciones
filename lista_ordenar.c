@@ -121,42 +121,44 @@ struct Nodo *borrar_en_orden(struct Nodo *primer_nodo, int dato_a_borrar){
     
     }
     
-   
 
     return primer_nodo;
 }
 
-struct Nodo *quitar_repetidos(struct Nodo *primer_nodo){
+
+
+
+
+
+/*En esta función buscamos todos los elementos repetidos y encuentra un elemento repetido lo 
+quitamos de la lista*/
+struct Nodo *quita_repetidos(struct Nodo *primer_nodo){
+	
     if(esta_vacia(primer_nodo)){
-        printf("\nLa lista esta vacia no se puede imprimir");
+        printf("\n La lista esta vacia no se puede imprimir");
     }
     else{
-        struct Nodo *aux1 = primer_nodo;
-        struct Nodo *aux2 = primer_nodo->siguiente_nodo;
+    	
+      struct Nodo *aux_1; 
+      struct Nodo *aux_2 = primer_nodo;
+    /*Hacemos un recorrido de toda la lista entrando al ciclo y por cada iteración si existe
+    un número igual aque ya existe lo omitimos con ayuda de los dos puntaros antes ya definidos.*/
+    while (aux_2 != NULL && aux_2->siguiente_nodo != NULL) {
 
-        while(aux2->siguiente_nodo != NULL){
-            
-            if(aux1->dato == aux2->dato){
-                printf("Entro chido aqui");
-                aux2 = aux1->siguiente_nodo->siguiente_nodo;
-                aux1 = primer_nodo->siguiente_nodo;
-                aux1->siguiente_nodo=NULL;
-                aux1=aux1->siguiente_nodo;
-                aux2=aux2->siguiente_nodo;
+        if(aux_2->dato != aux_2->siguiente_nodo->dato){
+          aux_2 = aux_2->siguiente_nodo;
+        }else{
+            aux_1 = aux_2->siguiente_nodo; 
+            aux_2->siguiente_nodo = aux_2->siguiente_nodo->siguiente_nodo; 
+            free(aux_1);   
+		} 
+	}
+        while(primer_nodo != NULL){
+            return primer_nodo;
+            primer_nodo = primer_nodo->siguiente_nodo;
             }
-            else{
-                printf("Sigue avanzando");
-                aux1 = aux1->siguiente_nodo;
-                aux2 = aux2->siguiente_nodo;
-            }
-        
-        //aux2 = aux2->siguiente_nodo;
-        }
     }
-return primer_nodo;
 }
-
-
 
 
 //Funcion Principal 
@@ -172,11 +174,18 @@ int main(int argc, char const *argv[])
     // imprimir_lista(primer_nodo);
     
    
-    primer_nodo = inserta_inicio(primer_nodo,61);
-    primer_nodo = inserta_inicio(primer_nodo,62);
-    primer_nodo = inserta_inicio(primer_nodo,62);
-    //imprimir_lista(primer_nodo);
-    primer_nodo = quitar_repetidos(primer_nodo);
-    imprimir_lista(primer_nodo);
+    
+
+
+    // primer_nodo = inserta_inicio(primer_nodo,1);
+    // primer_nodo = inserta_inicio(primer_nodo,1);
+    // primer_nodo = inserta_inicio(primer_nodo,2);
+    // primer_nodo = inserta_inicio(primer_nodo,2);
+    // primer_nodo = inserta_inicio(primer_nodo,3);
+    // primer_nodo = inserta_inicio(primer_nodo,3);
+    // primer_nodo = inserta_inicio(primer_nodo,4);
+    // primer_nodo = inserta_inicio(primer_nodo,4);
+    // primer_nodo = quita_repetidos(primer_nodo);
+    // imprimir_lista(primer_nodo);
     return 0;
 }
