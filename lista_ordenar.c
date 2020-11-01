@@ -120,40 +120,71 @@ struct Nodo *borrar_en_orden(struct Nodo *primer_nodo, int dato_a_borrar){
         printf("\nNo hay datos en la lista para eliminar");
     
     }
-    
-   
+
+    struct Nodo *aux = primer_nodo;
+    while(aux->siguiente_nodo != NULL){
+        
+        
+        aux = aux->siguiente_nodo;
+    }
+
+    imprimir_lista(primer_nodo);
 
     return primer_nodo;
 }
 
-struct Nodo *quitar_repetidos(struct Nodo *primer_nodo){
+struct Nodo *lista_invertida(struct Nodo *primer_nodo){
+    /*Con los datos obetinidos en la lista uno podemos invertir los valores de la primera lista 
+    declaramos un aux que vaya recorriendo cada una de las posiciones de la primer lista y 
+    con la ayuda de la funcion insertar_inicio inicimos una lista_2 con los mismo valores 
+    que la lista 1, pero de tal forma que ahora sea de atras hacia enfrente*/
+        struct Nodo *aux = primer_nodo;
+
+        if(esta_vacia(primer_nodo)){
+            printf("\nNo existen datos en la lista 1.");
+        }
+
+        struct Nodo *lista_2 = NULL;
+    /*Pasamos recorremos toda la lista y con la ayuda de la funcion insertar_inico.
+     Pasamos los parametros de la lista_2 y aux->dato.*/
+        while(aux != NULL){
+            lista_2 = inserta_inicio(lista_2,aux->dato);
+            aux = aux->siguiente_nodo;
+        }
+    return lista_2;
+}
+
+
+
+
+/*En esta función buscamos todos los elementos repetidos y encuentra un elemento repetido lo 
+quitamos de la lista*/
+struct Nodo *quita_repetidos(struct Nodo *primer_nodo){
+	
     if(esta_vacia(primer_nodo)){
-        printf("\nLa lista esta vacia no se puede imprimir");
+        printf("\n La lista esta vacia no se puede imprimir");
     }
     else{
-        struct Nodo *aux1 = primer_nodo;
-        struct Nodo *aux2 = primer_nodo->siguiente_nodo;
+    	
+      struct Nodo *aux_1; 
+      struct Nodo *aux_2 = primer_nodo;
+    /*Hacemos un recorrido de toda la lista entrando al ciclo y por cada iteración si existe
+    un número igual aque ya existe lo omitimos con ayuda de los dos puntaros antes ya definidos.*/
+    while (aux_2 != NULL && aux_2->siguiente_nodo != NULL) {
 
-        while(aux2->siguiente_nodo != NULL){
-            
-            if(aux1->dato == aux2->dato){
-                printf("Entro chido aqui");
-                aux2 = aux1->siguiente_nodo->siguiente_nodo;
-                aux1 = primer_nodo->siguiente_nodo;
-                aux1->siguiente_nodo=NULL;
-                aux1=aux1->siguiente_nodo;
-                aux2=aux2->siguiente_nodo;
+        if(aux_2->dato != aux_2->siguiente_nodo->dato){
+          aux_2 = aux_2->siguiente_nodo;
+        }else{
+            aux_1 = aux_2->siguiente_nodo; 
+            aux_2->siguiente_nodo = aux_2->siguiente_nodo->siguiente_nodo; 
+            free(aux_1);   
+		} 
+	}
+        while(primer_nodo != NULL){
+            return primer_nodo;
+            primer_nodo = primer_nodo->siguiente_nodo;
             }
-            else{
-                printf("Sigue avanzando");
-                aux1 = aux1->siguiente_nodo;
-                aux2 = aux2->siguiente_nodo;
-            }
-        
-        //aux2 = aux2->siguiente_nodo;
-        }
     }
-return primer_nodo;
 }
 
 
@@ -162,21 +193,47 @@ return primer_nodo;
 //Funcion Principal 
 int main(int argc, char const *argv[])
 {
-    struct Nodo *primer_nodo = NULL;
+   struct Nodo *primer_nodo = NULL;
    
-    // primer_nodo = en_orden(primer_nodo,2);
-    // primer_nodo = en_orden(primer_nodo,3);
     // primer_nodo = en_orden(primer_nodo,1);
-    // primer_nodo = en_orden(primer_nodo,0);
-    // primer_nodo = borrar_en_orden(primer_nodo,2);
+    // primer_nodo = en_orden(primer_nodo,5);
+    // primer_nodo = en_orden(primer_nodo,9);
+    // primer_nodo = en_orden(primer_nodo,11);
+    // primer_nodo = en_orden(primer_nodo,45);
+    // primer_nodo = en_orden(primer_nodo,89);
+    // primer_nodo = en_orden(primer_nodo,102);
+    // primer_nodo = en_orden(primer_nodo,202);
+    // primer_nodo = en_orden(primer_nodo,8);
+    // primer_nodo = en_orden(primer_nodo,2);
+    // primer_nodo = en_orden(primer_nodo,150);
+    // primer_nodo = en_orden(primer_nodo,74);
+    // primer_nodo = en_orden(primer_nodo,36);
+    // primer_nodo = en_orden(primer_nodo,36);
+    
     // imprimir_lista(primer_nodo);
     
+    // struct Nodo *lista_2 = NULL;
+    // lista_2 = lista_invertida(primer_nodo);
+    // imprimir_lista(lista_2);
+
+    
    
-    primer_nodo = inserta_inicio(primer_nodo,61);
-    primer_nodo = inserta_inicio(primer_nodo,62);
-    primer_nodo = inserta_inicio(primer_nodo,62);
-    //imprimir_lista(primer_nodo);
-    primer_nodo = quitar_repetidos(primer_nodo);
+    
+    primer_nodo = inserta_inicio(primer_nodo,1);
+    primer_nodo = inserta_inicio(primer_nodo,1);
+    primer_nodo = inserta_inicio(primer_nodo,1);
+    primer_nodo = inserta_inicio(primer_nodo,2);
+    primer_nodo = inserta_inicio(primer_nodo,2);
+    primer_nodo = inserta_inicio(primer_nodo,4);
+    primer_nodo = inserta_inicio(primer_nodo,5);
+    primer_nodo = inserta_inicio(primer_nodo,6);
+    primer_nodo = inserta_inicio(primer_nodo,6);
+    primer_nodo = inserta_inicio(primer_nodo,6);
     imprimir_lista(primer_nodo);
+    primer_nodo = quita_repetidos(primer_nodo);
+    imprimir_lista(primer_nodo);
+    
+    
     return 0;
 }
+
