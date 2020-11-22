@@ -120,15 +120,7 @@ struct Nodo *borrar_en_orden(struct Nodo *primer_nodo, int dato_a_borrar){
         printf("\nNo hay datos en la lista para eliminar");
     
     }
-
-    struct Nodo *aux = primer_nodo;
-    while(aux->siguiente_nodo != NULL){
-        
-        
-        aux = aux->siguiente_nodo;
-    }
-
-    imprimir_lista(primer_nodo);
+    
 
     return primer_nodo;
 }
@@ -186,8 +178,6 @@ struct Nodo *quita_repetidos(struct Nodo *primer_nodo){
             }
     }
 }
-
-
 
 
 //Funcion Principal 
